@@ -8,7 +8,7 @@ import os
 app = FastAPI()
 
 # MongoDB connection and setup
-MONGODB_URL = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
+MONGODB_URL = os.getenv("MONGODB_URL", "mongodb://root:example@mongodb:27017/Store?authSource=admin")
 client = AsyncIOMotorClient(MONGODB_URL)
 db = client["Store"]
 collection = db["Items"]
