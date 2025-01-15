@@ -12,15 +12,15 @@ services:
       - mongodb
     environment:
       - MONGODB_URL=mongodb://root:example@mongo:27017/
-
+# 
   mongodb:
     image: mongo:latest
     restart: always
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root 
-      MONGO_INITDB_ROOT_PASSWORD: example  
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
     volumes:
       - mongodb_data:/data/db
 
