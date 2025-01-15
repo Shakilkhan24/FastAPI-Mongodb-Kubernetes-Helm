@@ -3,11 +3,13 @@ from pydantic import BaseModel
 from typing import Optional, List
 from motor.motor_asyncio import AsyncIOMotorClient
 from bson import ObjectId
+import os
 
 app = FastAPI()
 
 # MongoDB connection and setup
-client = AsyncIOMotorClient("mongodb://localhost:27017")
+MONGODB_URL = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
+client = AsyncIOMotorClient(MONGODB_URL)
 db = client["Store"]
 collection = db["Items"]
 
@@ -60,3 +62,16 @@ async def delete_item(item_name: str):
     if result.deleted_count == 1:
         return {"message": "Item deleted"}
     raise HTTPException(status_code=404, detail="Item not found")
+
+@app.on_event("startup")
+async def startup_db_client():
+    try:
+        await client.admin.command('ping')
+        print("Successfully connected to MongoDB")
+    except Exception as e:
+        print(f"Error connecting to MongoDB: {e}")
+        raise
+
+@app.on_event("shutdown")
+async def shutdown_db_client():
+    client.close()
