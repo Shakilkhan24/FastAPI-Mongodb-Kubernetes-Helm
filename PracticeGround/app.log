@@ -1,0 +1,14 @@
+2025-02-11 10:20:36,100 - DEBUG - calculate_discount - Starting discount calculation: price=100, discount=20%
+2025-02-11 10:20:36,101 - DEBUG - calculate_discount - Calculation complete: original=100, discount=20.0, final=80.0
+2025-02-11 10:20:36,101 - DEBUG - calculate_discount - Starting discount calculation: price=invalid, discount=20%
+2025-02-11 10:20:36,101 - DEBUG - calculate_discount - Invalid input types: price=<class 'str'>, discount=<class 'int'>
+2025-02-11 10:20:36,101 - INFO - process_order - Processing order ORD123 with 2 items
+2025-02-11 10:20:36,101 - INFO - process_order - Order ORD123 processed successfully. Total: $15
+2025-02-11 10:20:36,101 - WARNING - check_inventory - Low inventory for product A123. Requested: 10, Available: 5
+2025-02-11 10:20:36,102 - INFO - transfer_money - Transferring $500 from 12345 to 67890
+2025-02-11 10:20:36,102 - ERROR - transfer_money - Money transfer failed: Source account 99999 not found
+Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\Playground\PracticeGround\log.py", line 56, in transfer_money
+    raise ValueError(f"Source account {from_account} not found")
+ValueError: Source account 99999 not found
+2025-02-11 10:20:36,105 - CRITICAL - initialize_database - Failed to connect to database. Application cannot start!
